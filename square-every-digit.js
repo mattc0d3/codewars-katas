@@ -1,7 +1,7 @@
 function squareDigits(num) {
     const digitsArray = num.toString().split("")
     const squaredDigitsArray = digitsArray.map(digit => Number(digit) ** 2)
-    return squaredDigitsArray.join("");
+    return Number(squaredDigitsArray.join(""));
 }
 
 console.log(squareDigits(9119))
