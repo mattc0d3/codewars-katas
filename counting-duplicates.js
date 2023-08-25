@@ -1,10 +1,14 @@
 function duplicateCount(text) {
     const seen = {}
+    const counted = {}
     let count = 0
     for (let i = 0; i < text.length; i++) {
         let char = text[i].toLowerCase()
         if (!seen[char]) seen[char] = true
-        else count++
+        else if (!counted[char]) {
+            count++
+            counted[char] = true
+        }
     }
     return count
 }
