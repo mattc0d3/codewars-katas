@@ -1,40 +1,30 @@
-function validBraces(braces){
-
-    const bracesCount = {
-        "(": 0,
-        ")": 0,
-        "[": 0,
-        "]": 0,
-        "{": 0,
-        "}": 0
+function validBraces(braces) {
+    const counterparts = {
+        "(": ")",
+        "[": "]",
+        "{": "}"
     }
-
+    const braceTracker = []
     for (let i = 0; i < braces.length; i++) {
-        bracesCount[braces[i]]++
-        if (braces[i] === ")" && (bracesCount["["] > bracesCount["]"] || bracesCount["{"] > bracesCount["}"])) return false
-        else if (braces[i] === "]" && (bracesCount["("] > bracesCount[")"] || bracesCount["{"] > bracesCount["}"])) return false
-        else if (braces[i] === "}" && (bracesCount["("] > bracesCount[")"] || bracesCount["["] > bracesCount["]"])) return false
+        if (Object.keys(counterparts).includes(braces[i])) braceTracker.push(braces[i])
+        else if (braces[i] === counterparts[braceTracker[braceTracker.length - 1]]) braceTracker.pop()
+        else return false
     }
-
-    if (bracesCount["("] !== bracesCount[")"] || bracesCount["["] !== bracesCount["]"] || bracesCount["{"] !== bracesCount["}"]) {
-        return false
-    }
-
-    return true
+    return !braceTracker.length > 0
 }
 
-// console.log(validBraces("()))")) // false
-// console.log(validBraces("()")) // true
-// console.log(validBraces("[]")) // true
-// console.log(validBraces("(){}[]")) // true
+console.log(validBraces("()))")) // false
+console.log(validBraces("()")) // true
+console.log(validBraces("[]")) // true
+console.log(validBraces("(){}[]")) // true
 console.log(validBraces("([{}])")) // true
-// console.log(validBraces("(}")) // false
+console.log(validBraces("(}")) // false
 console.log(validBraces("[(])")) // false
-// console.log(validBraces("({})[({})]")) // true
-// console.log(validBraces("(})")) // false
-// console.log(validBraces("(({{[[]]}}))")) // true
-// console.log(validBraces("{}({})[]")) // true
-// console.log(validBraces(")(}{][")) // false
-// console.log(validBraces("())({}}{()][][")) // false
-// console.log(validBraces("(((({{")) // false
-// console.log(validBraces("}}]]))}])")) // false
+console.log(validBraces("({})[({})]")) // true
+console.log(validBraces("(})")) // false
+console.log(validBraces("(({{[[]]}}))")) // true
+console.log(validBraces("{}({})[]")) // true
+console.log(validBraces(")(}{][")) // false
+console.log(validBraces("())({}}{()][][")) // false
+console.log(validBraces("(((({{")) // false
+console.log(validBraces("}}]]))}])")) // false
