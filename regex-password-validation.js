@@ -1,1 +1,1 @@
-const REGEXP = /./;
+const REGEXP = /[a-z][A-Z]{5}/;
