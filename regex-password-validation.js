@@ -1,4 +1,4 @@
-const REGEXP = /^(?=[^a-z]*[a-z]+)(?=[^A-Z]*[A-Z]+)(?=\D*\d)\w{6,}$/g;
+const REGEXP = /^(?=[^a-z]*[a-z]+)(?=[^A-Z]*[A-Z]+)(?=\D*\d)[a-zA-Z0-9]{6,}$/g;
 
 console.log(REGEXP.test("fjd3IR9")) // true
 console.log(REGEXP.test("ghdfj32")) // false
