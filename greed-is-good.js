@@ -27,3 +27,24 @@ console.log(score([2, 3, 4, 6, 2])) // 0
 console.log(score([4, 4, 4, 3, 3])) // 400
 console.log(score([2, 4, 4, 5, 4])) // 450
 console.log(score([5, 4, 4, 5, 4])) // 500
+
+
+function score2 (dice) {
+    const rolls = [0, 0, 0, 0, 0, 0]
+    dice.forEach(die => rolls[die - 1]++)
+    return rolls.reduce((total, roll, index) => {
+        switch (index + 1) {
+            case 1:
+                return total + (Math.floor(roll / 3) * 1000) + ((roll % 3) * 100)
+            case 5:
+                return total + (Math.floor(roll / 3) * 500) + ((roll % 3) * 50)
+            default:
+                return total + (Math.floor(roll / 3) * (index + 1) * 100)
+        }
+    }, 0)
+}
+
+console.log(score2([2, 3, 4, 6, 2])) // 0
+console.log(score2([4, 4, 4, 3, 3])) // 400
+console.log(score2([2, 4, 4, 5, 4])) // 450
+console.log(score2([5, 4, 4, 5, 4])) // 500
